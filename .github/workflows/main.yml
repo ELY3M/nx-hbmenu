@@ -29,6 +29,9 @@ jobs:
       # - name: rename nro
         # run: mv nx-hbmenu---modded-by-ELY-M.nro hbmenu.nro
         
+      - name: dir test
+        run: ls -la 
+        
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
