@@ -309,26 +309,26 @@ void themeStartup(ThemePreset preset) {
             [ThemeLayoutId_NetworkIcon] = {
                 .visible = true,
                 .posType = true,
-                .posStart = {0, 0 + 47 + 10 + 3},
+                .posStart = {-20, 0 + 47 + 10 + 3},
             },
 
             [ThemeLayoutId_BatteryCharge] = {
                 .visible = true,
                 .posType = false,
-                .posStart = {1180 - 10 - 24 - 8, 0 + 47 + 10 + 21 + 4},
+                .posStart = {1160 - 10 - 24 - 8, 0 + 47 + 10 + 21 + 4},
                 .font = interuiregular14,
             },
 
             [ThemeLayoutId_BatteryIcon] = {
                 .visible = true,
                 .posType = false,
-                .posStart = {1180 - 8 - 24 - 8, 0 + 47 + 10 + 6},
+                .posStart = {1160 - 8 - 24 - 8, 0 + 47 + 10 + 6},
             },
 
             [ThemeLayoutId_ChargingIcon] = {
                 .visible = true,
                 .posType = false,
-                .posStart = {1180 - 20, 0 + 47 + 10 + 6},
+                .posStart = {1160 - 20, 0 + 47 + 10 + 6},
             },
 
             [ThemeLayoutId_Status] = {
@@ -341,7 +341,7 @@ void themeStartup(ThemePreset preset) {
             [ThemeLayoutId_Temperature] = {
                 .visible = true,
                 .posType = false,
-                .posStart = {1180 + 4, 0 + 47 + 10 + 21 + 4},
+                .posStart = {1160 + 4, 0 + 47 + 10 + 21 + 4},
                 .font = interuiregular14,
             },
 
@@ -723,4 +723,23 @@ void SetThemePathToConfig(const char* themePath) {
     }
 
     config_destroy(&cfg);
+}
+
+int GetTempSettingFromConfig() {
+    int imperialtemperatureFlag=0;
+    config_t cfg = {0};
+    config_setting_t *settings = NULL;
+    char tmp_path[PATH_MAX+1] = {0};
+    snprintf(tmp_path, sizeof(tmp_path)-1, "%s/config/nx-hbmenu/settings.cfg", menuGetRootBasePath());
+    bool good_cfg = config_read_file(&cfg, tmp_path);
+    if(good_cfg) {
+        settings = config_lookup(&cfg, "settings");
+        if(settings != NULL) {  
+            if(config_setting_lookup_int(settings, "tempinF", &imperialtemperatureFlag)) {
+            }
+        
+        }
+    }
+    config_destroy(&cfg);
+    return imperialtemperatureFlag;
 }
