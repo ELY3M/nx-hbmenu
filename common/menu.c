@@ -67,6 +67,7 @@ void toggleStarState(menuEntry_s* arg) {
     }
 }
 
+
 static enum
 {
     HBMENU_DEFAULT,
@@ -574,6 +575,8 @@ void drawNetwork(int tmpX, AssetId id) {
 u32 drawStatus() {
     bool netstatusFlag=0;
     bool temperatureFlag=0;
+    int imperialtemperatureFlag=0;
+    s32 temperatureF=0;
     s32 temperature=0;
     AssetId id;
 
@@ -599,7 +602,13 @@ u32 drawStatus() {
     if (statusGet(&netstatusFlag, &id, &temperatureFlag, &temperature)) {
         if (netstatusFlag) drawNetwork(tmpX, id);
         if (temperatureFlag) {
+            imperialtemperatureFlag = GetTempSettingFromConfig();
+            if (imperialtemperatureFlag == 1) {
+            temperatureF = (temperature * 9 / 5) + 32;
+            snprintf(tmpstr, sizeof(tmpstr)-1, "%d°F (%d°C)", temperatureF, temperature);
+			} else {
             snprintf(tmpstr, sizeof(tmpstr)-1, "%d°C", temperature);
+            }
             DrawTextFromLayout(ThemeLayoutId_Temperature, themeCurrent.textColor, tmpstr);
         }
     }

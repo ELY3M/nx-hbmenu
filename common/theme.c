@@ -341,7 +341,7 @@ void themeStartup(ThemePreset preset) {
             [ThemeLayoutId_Temperature] = {
                 .visible = true,
                 .posType = false,
-                .posStart = {1180 + 4, 0 + 47 + 10 + 21 + 4},
+                .posStart = {1175, 0 + 47 + 10 + 21 + 4},
                 .font = interuiregular14,
             },
 
@@ -723,4 +723,23 @@ void SetThemePathToConfig(const char* themePath) {
     }
 
     config_destroy(&cfg);
+}
+
+int GetTempSettingFromConfig() {
+    int imperialtemperatureFlag=0;
+    config_t cfg = {0};
+    config_setting_t *settings = NULL;
+    char tmp_path[PATH_MAX+1] = {0};
+    snprintf(tmp_path, sizeof(tmp_path)-1, "%s/config/nx-hbmenu/settings.cfg", menuGetRootBasePath());
+    bool good_cfg = config_read_file(&cfg, tmp_path);
+    if(good_cfg) {
+        settings = config_lookup(&cfg, "settings");
+        if(settings != NULL) {  
+            if(config_setting_lookup_int(settings, "tempinF", &imperialtemperatureFlag)) {
+            }
+        
+        }
+    }
+    config_destroy(&cfg);
+    return imperialtemperatureFlag;
 }

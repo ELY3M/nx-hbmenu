@@ -56,6 +56,7 @@ bool colorFromSetting(config_setting_t *rgba, color_t *col);
 void themeStartup(ThemePreset preset);
 void GetThemePathFromConfig(char* themePath, size_t size);
 void SetThemePathToConfig(const char* themePath);
+int GetTempSettingFromConfig();
 
 extern theme_t themeCurrent;
 
