@@ -15,6 +15,8 @@ uint8_t *folder_icon_large, *folder_icon_small;
 uint8_t *invalid_icon_large, *invalid_icon_small;
 uint8_t *theme_icon_large, *theme_icon_small;
 
+int imperialtemperatureFlag=0;
+
 void computeFrontGradient(color_t baseColor, int height);
 
 void menuLoadFileassoc(void);
@@ -473,6 +475,8 @@ void menuStartup(void) {
     menuScan(rootPath);
 
     menuStartupCommon();
+    
+    imperialtemperatureFlag = GetTempSettingFromConfig();
 }
 
 void themeMenuStartup(void) {
@@ -574,7 +578,6 @@ void drawNetwork(int tmpX, AssetId id) {
 u32 drawStatus() {
     bool netstatusFlag=0;
     bool temperatureFlag=0;
-    int imperialtemperatureFlag=0;
     s32 temperatureF=0;
     s32 temperature=0;
     AssetId id;
@@ -601,7 +604,6 @@ u32 drawStatus() {
     if (statusGet(&netstatusFlag, &id, &temperatureFlag, &temperature)) {
         if (netstatusFlag) drawNetwork(tmpX, id);
         if (temperatureFlag) {
-            imperialtemperatureFlag = GetTempSettingFromConfig();
             if (imperialtemperatureFlag == 1) {
             temperatureF = (temperature * 9 / 5) + 32;
             snprintf(tmpstr, sizeof(tmpstr)-1, "%d°F (%d°C)", temperatureF, temperature);
