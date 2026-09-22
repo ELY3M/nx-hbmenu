@@ -309,26 +309,26 @@ void themeStartup(ThemePreset preset) {
             [ThemeLayoutId_NetworkIcon] = {
                 .visible = true,
                 .posType = true,
-                .posStart = {0, 0 + 47 + 10 + 3},
+                .posStart = {-20, 0 + 47 + 10 + 3},
             },
 
             [ThemeLayoutId_BatteryCharge] = {
                 .visible = true,
                 .posType = false,
-                .posStart = {1180 - 10 - 24 - 8, 0 + 47 + 10 + 21 + 4},
+                .posStart = {1160 - 10 - 24 - 8, 0 + 47 + 10 + 21 + 4},
                 .font = interuiregular14,
             },
 
             [ThemeLayoutId_BatteryIcon] = {
                 .visible = true,
                 .posType = false,
-                .posStart = {1180 - 8 - 24 - 8, 0 + 47 + 10 + 6},
+                .posStart = {1160 - 8 - 24 - 8, 0 + 47 + 10 + 6},
             },
 
             [ThemeLayoutId_ChargingIcon] = {
                 .visible = true,
                 .posType = false,
-                .posStart = {1180 - 20, 0 + 47 + 10 + 6},
+                .posStart = {1160 - 20, 0 + 47 + 10 + 6},
             },
 
             [ThemeLayoutId_Status] = {
@@ -341,7 +341,7 @@ void themeStartup(ThemePreset preset) {
             [ThemeLayoutId_Temperature] = {
                 .visible = true,
                 .posType = false,
-                .posStart = {1175, 0 + 47 + 10 + 21 + 4},
+                .posStart = {1160 + 4, 0 + 47 + 10 + 21 + 4},
                 .font = interuiregular14,
             },
 
